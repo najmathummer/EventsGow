@@ -1,0 +1,18 @@
+
+body{
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 0.875rem;
+}
+a{
+    color: #000000;
+}
+.card-container{
+    justify-self: center;
+}
+.d-grid-events {
+    display: grid;
+    padding: 3rem;
+    row-gap: 2rem;
+    /* justify-content: center; */
+    grid-template-columns: 25% 25% 25% 25%;
+  }
