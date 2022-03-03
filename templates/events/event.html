@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'events/base.html' %}
+{% load events_template_tags %}
+<html>
+    {% block title_block %}
+        All Events
+    {% endblock %}
+
+    {% block body_block %}
+        <h1>Find your event!</h1>
+        
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+        <div>
+            <ul>
+                <button type="button" class="btn btn-info"><a href="{% url 'events:add_event' %}">Add event</a></button>
+            </ul>
+        </div>
+
+        <ul class="nav nav-tabs">
+		    <li class="active"><a data-toggle="tab" href="#allEvents">All Events</a></li>
+		    <li><a data-toggle="tab" href="#myEvents">My Event</a></li>
+		    <li><a data-toggle="tab" href="#favourites">Favourites</a></li>
+		    <li><a data-toggle="tab" href="#going">Going</a></li>
+		</ul>
+
+        <div class="tab-content">
+            <div id="allEvents" class="tab-pane fade in active">
+                {% if events %}
+                    <ul>
+                        {% for event in events %}
+                            <li><a href="{% url 'events:show_event' event.slug %}">
+                                {{ event.name }}</a></li>
+                        {% endfor %}
+                    </ul> 
+                {% else %}
+                    <strong>There are no events present.</strong> 
+                {% endif %}
+            </div>
+
+            <div id="myEvents" class="tab-pane fade in active">
+                My favourites events
+            </div>
+
+        </div>
+    {% endblock %} 
+    
+</html>

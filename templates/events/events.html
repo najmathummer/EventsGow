@@ -1,0 +1,13 @@
+<ul> 
+    {% if events %}
+        {% for e in events %}
+            {% if e == current_event %}
+                <li><strong><a href="{% url 'events:show_event' c.slug %}">{{ c.name }}</a></strong></li>
+            {% else %}
+                <li><a href="{% url 'events:show_event' c.slug %}">{{ c.name }}</a></li>
+            {% endif %}
+        {% endfor %} 
+    {% else %}
+        <li><strong>There are no event present.</strong></li> 
+    {%endif%}
+</ul>
