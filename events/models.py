@@ -2,6 +2,7 @@ from django.db import models
 
 # Event model-listView-url-listTemplate
 class Tags(models.Model):
+    id = models.IntegerField(primary_key=True)
     tag_name = models.CharField(max_length=20)
     
 
@@ -23,7 +24,9 @@ class Events(models.Model):
     attendees = models.ManyToManyField()
     
     
-    
-
-# class EventView(models.Model)
-
+class User(models.Model):
+    id = models.IntegerField(primary_key=True)
+    username = models.CharField(max_length=150)
+    password = models.CharField(max_length=128)
+    email = models.CharField(max_length=75)
+    is_superuser = models.BooleanField()
