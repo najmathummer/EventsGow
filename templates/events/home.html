@@ -1,17 +1,54 @@
-{% extends 'events/base.html' %} {% block body_block %}
-{% if user.is_authenticated %}
+
+{% extends 'events/base.html' %} 
+{% load static %}
+{% block body_block %} {% if user.is_authenticated %}
 <div class="main">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">EventsGow</a>
-       <a href="{% url 'account_logout' %}">Log out</a>
+      <a href="{% url 'account_logout' %}">Log out</a>
     </div>
   </nav>
   <div class="d-flex justify-content-center px-5 my-4">
-  <form class="d-flex w-75 justify-content-center">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-primary" type="submit">Search</button>
-      </form></div>
+    <form class="d-flex w-75 justify-content-center">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+
+      <button class="btn btn-outline-primary search" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+  <div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modalBody p-3"></div>
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
   <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <button
@@ -55,12 +92,12 @@
         Favourites
       </button>
     </li>
-     <li class="nav-item" role="presentation">
+    <li class="nav-item" role="presentation">
       <button
         class="nav-link"
-        id="contact-tab"
+        id="attending-tab"
         data-bs-toggle="tab"
-        data-bs-target="#contact"
+        data-bs-target="#attending"
         type="button"
         role="tab"
         aria-controls="contact"
@@ -78,202 +115,27 @@
       aria-labelledby="home-tab"
     >
       <div class="d-grid-events">
-      <div class="card-container">
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://knk.com/wp-content/uploads/2020/04/noiseporn-JNuKyKXLh8U-unsplash.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <div class="d-flex justify-content-end">
-              <div><i class="far fa-edit me-1"></i></div>
-              <div><i class="far fa-star"></i></div>
-            </div>
-            <h5 class="">Balloon Fiesta</h5>
-            <b
-              ><i class="fas fa-map-marker-alt me-1"></i> Glasgow University
-              Union</b
-            >
-            <div>
-              <i class="far fa-calendar-alt me-1"></i> 26th February 2022
-            </div>
-            <div><i class="far fa-clock me-1"></i>10:30 AM</div>
-            <div><i class="fas fa-link me-1"></i>https://xyz.com</div>
-            <p class="card-text mb-1">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-between align-items-end">
-              <div><a href="">You and 5 others going</a></div>
-              <div>
-                <button type="button" class="btn btn-outline-primary btn-sm">
-                  Attend
-                </button>
-              </div>
-            </div>
+        <div class="card-container add-card">
+ <a href="#">
+        <div class="card createEvent" style="width: 18rem; height:95%;"  data-bs-toggle="modal"
+    data-bs-target="#exampleModal">
+          <div class="card-body d-flex justify-content-center align-items-center">
+          <i class="fas fa-plus" style="font-size: x-large;"></i>
           </div>
+          
+        </div></a>
         </div>
-        <span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary"> + 5 more</span>
-</div>
-<div class="card-container">
-<div class="card" style="width: 18rem">
-          <img
-            src="https://knk.com/wp-content/uploads/2020/04/noiseporn-JNuKyKXLh8U-unsplash.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <div class="d-flex justify-content-end">
-              <div><i class="far fa-edit me-1"></i></div>
-              <div><i class="far fa-star"></i></div>
-            </div>
-            <h5 class="">Balloon Fiesta</h5>
-            <b
-              ><i class="fas fa-map-marker-alt me-1"></i> Glasgow University
-              Union</b
-            >
-            <div>
-              <i class="far fa-calendar-alt me-1"></i> 26th February 2022
-            </div>
-            <div><i class="far fa-clock me-1"></i>10:30 AM</div>
-            <div><i class="fas fa-link me-1"></i>https://xyz.com</div>
-            <p class="card-text mb-1">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-between align-items-end">
-              <div><a href="">You and 5 others going</a></div>
-              <div>
-                <button type="button" class="btn btn-outline-primary btn-sm">
-                  Attend
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary"> + 5 more</span></div>
-<div class="card-container">
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://knk.com/wp-content/uploads/2020/04/noiseporn-JNuKyKXLh8U-unsplash.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <div class="d-flex justify-content-end">
-              <div><i class="far fa-edit me-1"></i></div>
-              <div><i class="far fa-star"></i></div>
-            </div>
-            <h5 class="">Balloon Fiesta</h5>
-            <b
-              ><i class="fas fa-map-marker-alt me-1"></i> Glasgow University
-              Union</b
-            >
-            <div>
-              <i class="far fa-calendar-alt me-1"></i> 26th February 2022
-            </div>
-            <div><i class="far fa-clock me-1"></i>10:30 AM</div>
-            <div><i class="fas fa-link me-1"></i>https://xyz.com</div>
-            <p class="card-text mb-1">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-between align-items-end">
-              <div><a href="">You and 5 others going</a></div>
-              <div>
-                <button type="button" class="btn btn-outline-primary btn-sm">
-                  Attend
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% if events %} {% for event in events.all_events %}
+
+        <div class="card-container">
+          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
+          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
+           {% endfor %} 
           <span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary"> + 5 more</span></div>
-<div class="card-container">
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://knk.com/wp-content/uploads/2020/04/noiseporn-JNuKyKXLh8U-unsplash.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <div class="d-flex justify-content-end">
-              <div><i class="far fa-edit me-1"></i></div>
-              <div><i class="far fa-star"></i></div>
-            </div>
-            <h5 class="">Balloon Fiesta</h5>
-            <b
-              ><i class="fas fa-map-marker-alt me-1"></i> Glasgow University
-              Union</b
-            >
-            <div>
-              <i class="far fa-calendar-alt me-1"></i> 26th February 2022
-            </div>
-            <div><i class="far fa-clock me-1"></i>10:30 AM</div>
-            <div><i class="fas fa-link me-1"></i>https://xyz.com</div>
-            <p class="card-text mb-1">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-between align-items-end">
-              <div><a href="">You and 5 others going</a></div>
-              <div>
-                <button type="button" class="btn btn-outline-primary btn-sm">
-                  Attend
-                </button>
-              </div>
-            </div>
-          </div>
+          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
         </div>
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary"> + 5 more</span></div>
-<div class="card-container">
-        <div class="card" style="width: 18rem">
-          <img
-            src="https://knk.com/wp-content/uploads/2020/04/noiseporn-JNuKyKXLh8U-unsplash.jpg"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <div class="d-flex justify-content-end">
-              <div><i class="far fa-edit me-1"></i></div>
-              <div><i class="far fa-star"></i></div>
-            </div>
-            <h5 class="">Balloon Fiesta</h5>
-            <b
-              ><i class="fas fa-map-marker-alt me-1"></i> Glasgow University
-              Union</b
-            >
-            <div>
-              <i class="far fa-calendar-alt me-1"></i> 26th February 2022
-            </div>
-            <div><i class="far fa-clock me-1"></i>10:30 AM</div>
-            <div><i class="fas fa-link me-1"></i>https://xyz.com</div>
-            <p class="card-text mb-1">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </p>
-            <div class="d-flex justify-content-between align-items-end">
-              <div><a href="">You and 5 others going</a></div>
-              <div>
-                <button type="button" class="btn btn-outline-primary btn-sm">
-                  Attend
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary">Secondary</span>
-<span class="badge rounded-pill bg-secondary"> + 5 more</span></div>
+       
+        {% endfor %} {% endif %}
       </div>
     </div>
     <div
@@ -282,7 +144,18 @@
       role="tabpanel"
       aria-labelledby="profile-tab"
     >
-      profile
+      <div class="d-grid-events">
+        {% if events.created_events %} {% for event in events.created_events %}
+
+        <div class="card-container">
+          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
+          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
+           {% endfor %} 
+          <span class="badge rounded-pill bg-secondary">Secondary</span>
+          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
     </div>
     <div
       class="tab-pane fade"
@@ -290,10 +163,157 @@
       role="tabpanel"
       aria-labelledby="contact-tab"
     >
-      contacts
+      <div class="d-grid-events">
+        {% if events.favorite_events %} {% for event in events.favorite_events %}
+
+         <div class="card-container">
+          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
+          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
+           {% endfor %} 
+          <span class="badge rounded-pill bg-secondary">Secondary</span>
+          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+    <div
+      class="tab-pane fade"
+      id="attending"
+      role="tabpanel"
+      aria-labelledby="attending-tab"
+    >
+      <div class="d-grid-events">
+        {% if events.going_events %} {% for event in events.going_events %}
+
+         <div class="card-container">
+          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
+          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
+           {% endfor %} 
+          <span class="badge rounded-pill bg-secondary">Secondary</span>
+          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
+        </div> 
+        {% endfor %} {% endif %}
+      </div>
     </div>
   </div>
 </div>
-{% else %} 
-<a href="{% url 'account_signup' %}">Sign Up</a> 
-{% endif %} {% endblock %}
+
+{% else %}
+<a href="{% url 'account_signup' %}">Sign Up</a>
+{% endif %} 
+{% endblock %} 
+{% block javascript %}
+<script>
+ 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+        $.ajaxSetup({ 
+                            beforeSend: function (xhr, settings) {
+                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                }
+            } 
+        });
+
+  $(".createEvent").click(function (e) {
+      e.preventDefault();
+      // get the nickname
+      var nick_name = $(this).val();
+      // GET AJAX request
+      $.ajax({
+          type: 'GET',
+          url: "{% url 'events:add_event' %}",
+          success: function (response) {
+              // if not valid user, alert the user
+              $(".modalBody").html(response);
+
+             console.log("display")
+          },
+          error: function (response) {
+              console.log("error",response)
+          }
+      })
+
+  })
+  $(".attend").click(function (e) {
+    const csrftoken = getCookie('csrftoken');
+    console.log("csrf token",csrftoken)
+      e.preventDefault();
+      // get the nickname
+      let event = $(this).val();
+      console.log("data", event)
+      // GET AJAX request
+      $.ajax({
+          type: 'POST',
+          headers: {'X-CSRFToken': csrftoken},
+          url: "{% url 'events:attend_event' %}",
+          data: {
+            "event": event},
+          success: function (response) {
+              // if not valid user, alert the user
+              console.log("attend_success,",response.status)
+              $(".attend").html(response.status);
+              window.location.reload() 
+
+             
+          },
+          error: function (response) {
+              console.log("error",response)
+          }
+      })
+
+  });
+  $(".favourite").click(function (e) {
+    const csrftoken = getCookie('csrftoken');
+    console.log("csrf token",csrftoken)
+      e.preventDefault();
+      // get the nickname
+      let event = $(this).attr('id');
+      console.log("data", event)
+      // GET AJAX request
+      $.ajax({
+          type: 'POST',
+          headers: {'X-CSRFToken': csrftoken},
+          url: "{% url 'events:mark_favourite' %}",
+          data: {
+            "event": event},
+          success: function (response) {
+              // if not valid user, alert the user
+              console.log("mark_favourite,",response.status=="favourite")
+              if(response.status=="favourite"){
+                console.log("enterd")
+                $(".favourite").html( '<i class="fas fa-star" style="color: #ffc300"></i>');
+              }
+              else{
+                console.log("enterd2")
+                $(".favourite").html( '<i class="far fa-star"></i>');
+              }
+             // $(".favourite").html( <i class="fas fa-star" style="color: #ffc300"></i>);
+             // $(".favourite").html(response.status?"sa":"ff")
+             // $(".favourite").html(response.status);
+
+             
+          },
+          error: function (response) {
+              console.log("error",response)
+          }
+      })
+
+  })
+
+</script>
+{% endblock javascript %}
