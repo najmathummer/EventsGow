@@ -6,8 +6,17 @@ body{
 a{
     color: #000000;
 }
+.btn:focus, .btn-outline-primary:focus, .btn-primary:focus{
+    box-shadow: none !important;
+}
 .card-container{
     justify-self: center;
+}
+.createEvent:hover{
+    background-color: rgb(248 249 250) !important;
+}
+.add-card > a{
+    text-decoration: none; 
 }
 .d-grid-events {
     display: grid;
@@ -16,3 +25,12 @@ a{
     /* justify-content: center; */
     grid-template-columns: 25% 25% 25% 25%;
   }
+  .select2{
+      width: 100% !important;
+  }
+  .select2-close-mask{
+    z-index: 2099;
+}
+.select2-dropdown{
+    z-index: 3051;
+}

@@ -51,6 +51,7 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+AUTH_USER_MODEL = "accounts.CustomUser"
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_ADAPTER = 'accounts.adapter.DefaultAccountAdapterCustom'
 AUTHENTICATION_BACKENDS = [
@@ -100,7 +101,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventsgow',
-        'USER': 'yourusername',
+        'USER': 'najmathummer',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
