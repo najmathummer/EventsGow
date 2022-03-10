@@ -99,10 +99,11 @@ WSGI_APPLICATION = 'EventsGow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eventsgow',
-        'USER': 'yourusername',
+        'NAME': 'eventsDB',
+        'USER': 'ahmed',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'PASSWORD': '796HDSrh',
     }
 }
 LOGIN_REDIRECT_URL = 'events:home'
