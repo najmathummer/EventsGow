@@ -1,319 +1,341 @@
-
-{% extends 'events/base.html' %} 
-{% load static %}
-{% block body_block %} {% if user.is_authenticated %}
+{% extends 'events/base.html' %} {% load static %} 
+{% block head_block %} <script src="{% static "js/events/events.js" %}"></script>{% endblock %}
+{% block body_block %} 
+{% if user.is_authenticated %}
 <div class="main">
+<!-- Navbar -->
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">EventsGow</a>
       <a href="{% url 'account_logout' %}">Log out</a>
     </div>
   </nav>
+  <!-- End Navbar -->
+  <!-- Search Bar -->
   <div class="d-flex justify-content-center px-5 my-4">
-    <form class="d-flex w-75 justify-content-center">
+    <div class="d-flex w-75 justify-content-center">
       <input
-        class="form-control me-2"
+        class="form-control me-2 search-input"
         type="search"
         placeholder="Search"
         aria-label="Search"
       />
 
-      <button class="btn btn-outline-primary search" type="submit">
+      <button class="btn btn-outline-primary search" type="button">
         Search
       </button>
-    </form>
+    </div>
   </div>
+  <!-- End Search Bar -->
   <div>
-
-  <!-- Modal -->
-  <div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modalBody p-3"></div>
-      </div>
-    </div>
-  </div>
-  <!-- End Modal -->
-  <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link active"
-        id="home-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#home"
-        type="button"
-        role="tab"
-        aria-controls="home"
-        aria-selected="true"
-      >
-        All Events
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="profile-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#profile"
-        type="button"
-        role="tab"
-        aria-controls="profile"
-        aria-selected="false"
-      >
-        My Events
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="contact-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#contact"
-        type="button"
-        role="tab"
-        aria-controls="contact"
-        aria-selected="false"
-      >
-        Favourites
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button
-        class="nav-link"
-        id="attending-tab"
-        data-bs-toggle="tab"
-        data-bs-target="#attending"
-        type="button"
-        role="tab"
-        aria-controls="contact"
-        aria-selected="false"
-      >
-        Attending
-      </button>
-    </li>
-  </ul>
-  <div class="tab-content" id="myTabContent">
+    <!-- Modal -->
     <div
-      class="tab-pane fade show active"
-      id="home"
-      role="tabpanel"
-      aria-labelledby="home-tab"
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
     >
-      <div class="d-grid-events">
-        <div class="card-container add-card">
- <a href="#">
-        <div class="card createEvent" style="width: 18rem; height:95%;"  data-bs-toggle="modal"
-    data-bs-target="#exampleModal">
-          <div class="card-body d-flex justify-content-center align-items-center">
-          <i class="fas fa-plus" style="font-size: x-large;"></i>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create Event</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
-          
-        </div></a>
+          <div class="modalBody p-3"></div>
         </div>
-        {% if events %} {% for event in events.all_events %}
-
-        <div class="card-container">
-          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
-          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
-           {% endfor %} 
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
-        </div>
-       
-        {% endfor %} {% endif %}
       </div>
     </div>
-    <div
-      class="tab-pane fade"
-      id="profile"
-      role="tabpanel"
-      aria-labelledby="profile-tab"
-    >
-      <div class="d-grid-events">
-        {% if events.created_events %} {% for event in events.created_events %}
+    <!-- End Modal -->
+    <!-- Tab Bar -->
+    <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="allevents-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#allevents"
+          type="button"
+          role="tab"
+          aria-controls="allevents"
+          aria-selected="true"
+        >
+          All Events
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="myevents-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#myevents"
+          type="button"
+          role="tab"
+          aria-controls="myevents"
+          aria-selected="false"
+        >
+          My Events
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="fav-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#fav"
+          type="button"
+          role="tab"
+          aria-controls="fav"
+          aria-selected="false"
+        >
+          Favourites
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="attending-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#attending"
+          type="button"
+          role="tab"
+          aria-controls="attending"
+          aria-selected="false"
+        >
+          Attending
+        </button>
+      </li>
+    </ul>
+    <!--End Tab Bar -->
+    <!-- All events tab content -->
+    <div class="tab-content" id="myTabContent">
+      <div
+        class="tab-pane fade show active"
+        id="allevents"
+        role="tabpanel"
+        aria-labelledby="allevents-tab"
+      >
+        <div class="d-grid-events">
+          <div class="card-container add-card">
+            <a href="#">
+              <div
+                class="card createEvent"
+                style="width: 18rem; height: 95%"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <div
+                  class="card-body d-flex justify-content-center align-items-center"
+                >
+                  <i class="fas fa-plus" style="font-size: x-large"></i>
+                </div></div
+            ></a>
+          </div>
+          {% if events %} {% for event in events.all_events %}
 
-        <div class="card-container">
-          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
-          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
-           {% endfor %} 
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
+          <div class="card-container">
+            {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
+            <span class="badge rounded-pill bg-secondary"
+              >{{tag.tag_name}}</span
+            >
+            {% endfor %}
+          </div>
+
+          {% endfor %} {% endif %}
         </div>
-        {% endfor %} {% endif %}
       </div>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="contact"
-      role="tabpanel"
-      aria-labelledby="contact-tab"
-    >
-      <div class="d-grid-events">
-        {% if events.favorite_events %} {% for event in events.favorite_events %}
-
-         <div class="card-container">
-          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
-          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
-           {% endfor %} 
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
-        </div>
-        {% endfor %} {% endif %}
-      </div>
-    </div>
-    <div
-      class="tab-pane fade"
-      id="attending"
-      role="tabpanel"
-      aria-labelledby="attending-tab"
-    >
-      <div class="d-grid-events">
-        {% if events.going_events %} {% for event in events.going_events %}
-
-         <div class="card-container">
-          {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
-          <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
-           {% endfor %} 
-          <span class="badge rounded-pill bg-secondary">Secondary</span>
-          <span class="badge rounded-pill bg-secondary"> + 5 more</span>
-        </div> 
-        {% endfor %} {% endif %}
-      </div>
+       <!-- My events tab content -->
+      <div
+        class="tab-pane fade"
+        id="myevents"
+        role="tabpanel"
+        aria-labelledby="myevents-tab"
+      ></div>
+      <!-- End My events tab content -->
+      <div
+        class="tab-pane fade"
+        id="fav"
+        role="tabpanel"
+        aria-labelledby="fav-tab"
+      ></div>
+      <!--  Fav events tab content -->
+      <div
+        class="tab-pane fade"
+        id="attending"
+        role="tabpanel"
+        aria-labelledby="attending-tab"
+      ></div>
+      <!-- End Fav events tab content -->
     </div>
   </div>
-</div>
 
-{% else %}
-<a href="{% url 'account_signup' %}">Sign Up</a>
-{% endif %} 
-{% endblock %} 
-{% block javascript %}
-<script>
- 
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
+  {% else %}
+  <a href="{% url 'account_signup' %}">Sign Up</a>
+  {% endif %} {% endblock %} {% block javascript %}
+  <script>
+    {% comment %} function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === name + '=') {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
         }
+      }
+      return cookieValue;
     }
-    return cookieValue;
-}
 
-        $.ajaxSetup({ 
-                            beforeSend: function (xhr, settings) {
-                if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                }
-            } 
-        });
+    $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+        if (
+          !(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))
+        ) {
+          xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+        }
+      },
+    });
 
-  $(".createEvent").click(function (e) {
+    $('.createEvent').click(function (e) {
       e.preventDefault();
       // get the nickname
       var nick_name = $(this).val();
       // GET AJAX request
       $.ajax({
-          type: 'GET',
-          url: "{% url 'events:add_event' %}",
-          success: function (response) {
-              // if not valid user, alert the user
-              $(".modalBody").html(response);
+        type: 'GET',
+        url: "{% url 'events:add_event' %}",
+        success: function (response) {
+          // if not valid user, alert the user
+          $('.modalBody').html(response);
 
-             console.log("display")
-          },
-          error: function (response) {
-              console.log("error",response)
-          }
-      })
-
-  })
-  $(".attend").click(function (e) {
-    const csrftoken = getCookie('csrftoken');
-    console.log("csrf token",csrftoken)
+          console.log('display');
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('#allevents-tab').click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'events:all_events' %}",
+        success: function (response) {
+          $('#allevents').html(response);
+          console.log('display');
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('#myevents-tab').click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'events:created' %}",
+        success: function (response) {
+          $('#myevents').html(response);
+          console.log('display');
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('#fav-tab').click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'events:favourite' %}",
+        success: function (response) {
+          $('#fav').html(response);
+          console.log('display');
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('#attending-tab').click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'GET',
+        url: "{% url 'events:attending' %}",
+        success: function (response) {
+          $('#attending').html(response);
+          console.log('attending clicked');
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('.attend').click(function (e) {
+      const csrftoken = getCookie('csrftoken');
+      console.log('csrf token', csrftoken);
       e.preventDefault();
       // get the nickname
       let event = $(this).val();
-      console.log("data", event)
+      console.log('data', event);
       // GET AJAX request
       $.ajax({
-          type: 'POST',
-          headers: {'X-CSRFToken': csrftoken},
-          url: "{% url 'events:attend_event' %}",
-          data: {
-            "event": event},
-          success: function (response) {
-              // if not valid user, alert the user
-              console.log("attend_success,",response.status)
-              $(".attend").html(response.status);
-              window.location.reload() 
-
-             
-          },
-          error: function (response) {
-              console.log("error",response)
-          }
-      })
-
-  });
-  $(".favourite").click(function (e) {
-    const csrftoken = getCookie('csrftoken');
-    console.log("csrf token",csrftoken)
+        type: 'POST',
+        headers: { 'X-CSRFToken': csrftoken },
+        url: "{% url 'events:attend_event' %}",
+        data: {
+          event: event,
+        },
+        success: function (response) {
+          // if not valid user, alert the user
+          console.log('attend_success,', response.status);
+          $('.attend').html(response.status);
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+    $('.favourite').click(function (e) {
+      const csrftoken = getCookie('csrftoken');
+      console.log('csrf token', csrftoken);
       e.preventDefault();
       // get the nickname
       let event = $(this).attr('id');
-      console.log("data", event)
+      console.log('data', event);
       // GET AJAX request
       $.ajax({
-          type: 'POST',
-          headers: {'X-CSRFToken': csrftoken},
-          url: "{% url 'events:mark_favourite' %}",
-          data: {
-            "event": event},
-          success: function (response) {
-              // if not valid user, alert the user
-              console.log("mark_favourite,",response.status=="favourite")
-              if(response.status=="favourite"){
-                console.log("enterd")
-                $(".favourite").html( '<i class="fas fa-star" style="color: #ffc300"></i>');
-              }
-              else{
-                console.log("enterd2")
-                $(".favourite").html( '<i class="far fa-star"></i>');
-              }
-             // $(".favourite").html( <i class="fas fa-star" style="color: #ffc300"></i>);
-             // $(".favourite").html(response.status?"sa":"ff")
-             // $(".favourite").html(response.status);
-
-             
-          },
-          error: function (response) {
-              console.log("error",response)
+        type: 'POST',
+        headers: { 'X-CSRFToken': csrftoken },
+        url: "{% url 'events:mark_favourite' %}",
+        data: {
+          event: event,
+        },
+        success: function (response) {
+          console.log('mark_favourite,', response.status == 'favourite');
+          if (response.status == 'favourite') {
+            console.log('enterd');
+            $('.favourite').html(
+              '<i class="fas fa-star" style="color: #ffc300"></i>'
+            );
+          } else {
+            console.log('enterd2');
+            $('.favourite').html('<i class="far fa-star"></i>');
           }
-      })
-
-  })
-
-</script>
-{% endblock javascript %}
+        },
+        error: function (response) {
+          console.log('error', response);
+        },
+      });
+    });
+  </script> {% endcomment %}
+  {% endblock javascript %}
+</div>
