@@ -44,6 +44,22 @@ $(document).ready(function() {
           },
         });
       });
+      $('.attendees-list').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+          type: 'GET',
+          url: "/event/"+ $(this).attr('id'),
+          success: function (response) {
+            $('.modalBody').html(response);
+    
+            console.log('display', $('.modalBody').html);
+          },
+          error: function (response) {
+            console.log('error', response);
+          },
+        });
+      });
+      
       $('.search-input').change(function (e) {
         e.preventDefault();
         // get the nickname

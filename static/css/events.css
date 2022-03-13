@@ -34,3 +34,21 @@ a{
 .select2-dropdown{
     z-index: 3051;
 }
+.lp-grid-2 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 2% 60px;
+}
+.font-white{
+    color: #ffffff;
+}
+.landing-page{
+    height: 100vh;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-image: linear-gradient(
+        rgba(24, 22, 22, 0.6),
+        rgba(87, 81, 81, 0.6)
+      ),
+      url('../../media/images/events.jpeg');   
+}

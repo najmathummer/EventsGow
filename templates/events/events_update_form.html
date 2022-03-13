@@ -3,7 +3,7 @@
  
 
 
-      <form method="post" id='form' action="{% url 'events:add_event'  %}" enctype="multipart/form-data">
+      <form method="post" id='form' action="{% url 'events:update_event' object.pk  %}" enctype="multipart/form-data">
       {% csrf_token %}
        {{ form.as_p }}
        <input type="submit" value="Save" class="btn btn-primary ">

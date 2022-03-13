@@ -90,7 +90,7 @@ TEMPLATES = [
         },
     },
 ]
-
+ACCOUNT_FORMS = {'login': 'accounts.forms.MyCustomLoginForm'}
 WSGI_APPLICATION = 'EventsGow.wsgi.application'
 
 
