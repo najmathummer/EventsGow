@@ -90,7 +90,11 @@ TEMPLATES = [
         },
     },
 ]
-ACCOUNT_FORMS = {'login': 'accounts.forms.MyCustomLoginForm'}
+ACCOUNT_FORMS = {'login': 'accounts.forms.MyCustomLoginForm',
+                'signup': 'accounts.forms.MyCustomSignupForm',
+                'reset_password': 'accounts.forms.MyCustomResetPasswordForm',
+
+}
 WSGI_APPLICATION = 'EventsGow.wsgi.application'
 
 
@@ -101,7 +105,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventsgow',
-        'USER': 'your_username',
+        'USER': 'yourusername',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

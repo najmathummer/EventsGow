@@ -94,9 +94,10 @@ class SearchListView(LoginRequiredMixin, ListView):
     template_name = "events/all_event_list.html"
     context_object_name = 'events'
     def get_queryset(self):
-        print("slef", self.request.GET.get('data'))
+        
         query = self.request.GET.get('data')
-        queryset = Events.objects.filter(Q(tags__tag_name__icontains=query) | Q(title__icontains=query))
+        queryset = Events.objects.filter(Q(tags__tag_name__icontains=query) | Q(title__icontains=query)).distinct()
+        print("slef", queryset)
         return queryset
 
 def attend_event(request):

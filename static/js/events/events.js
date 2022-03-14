@@ -24,8 +24,7 @@ $(document).ready(function() {
           }
         },
       });
-    
-      $('.createEvent').click(function (e) {
+      $('body').on('click', '.createEvent', function(e) {
         e.preventDefault();
         // get the nickname
         var nick_name = $(this).val();
@@ -44,7 +43,26 @@ $(document).ready(function() {
           },
         });
       });
-      $('.attendees-list').click(function (e) {
+      $('body').on('click', '.updateEvent', function(e) {
+        e.preventDefault();
+        // get the nickname
+        var nick_name = $(this).val();
+        // GET AJAX request
+        $.ajax({
+          type: 'GET',
+          url: "/update_event/"+$(this).attr('id'),
+          success: function (response) {
+            // if not valid user, alert the user
+            $('.modalBody').html(response);
+    
+            console.log('display');
+          },
+          error: function (response) {
+            console.log('error', response);
+          },
+        });
+      });
+      $('body').on('click', '.attendees-list', function(e) {
         e.preventDefault();
         $.ajax({
           type: 'GET',
@@ -71,8 +89,9 @@ $(document).ready(function() {
           url: "/search/",
           data:{"data":nick_name},
           success: function (response) {
-            
+           
             $('#allevents').html(response);
+           
             console.log('display', response);
           },
           error: function (response) {
@@ -88,7 +107,7 @@ $(document).ready(function() {
           url: "/all_events/",
           success: function (response) {
             $('#allevents').html(response);
-            console.log('display');
+            console.log('all_events', response);
           },
           error: function (response) {
             console.log('error', response);
@@ -137,11 +156,9 @@ $(document).ready(function() {
           },
         });
       });
-      $('.attend').click(function (e) {
+      $('body').on('click', '.attend-btn', function(e) {
         const csrftoken = getCookie('csrftoken');
-        console.log('csrf token', csrftoken);
         e.preventDefault();
-        // get the nickname
         let event = $(this).val();
         console.log('data', event);
         // GET AJAX request
@@ -155,16 +172,16 @@ $(document).ready(function() {
           success: function (response) {
             // if not valid user, alert the user
             console.log('attend_success,', response.status);
-            $('.attend').html(response.status);
+            $(e.currentTarget).html(response.status);
           },
           error: function (response) {
             console.log('error', response);
           },
         });
       });
-      $('.favourite').click(function (e) {
+      $('body').on('click', '.favourite', function(e) {
         const csrftoken = getCookie('csrftoken');
-        console.log('csrf token', csrftoken);
+        console.log('target', $(e.currentTarget));
         e.preventDefault();
         // get the nickname
         let event = $(this).attr('id');
@@ -180,17 +197,48 @@ $(document).ready(function() {
           success: function (response) {
             if (response.status == 'favourite') {
               console.log('enterd');
-              $('.favourite').html(
+              $(e.currentTarget).html(
                 '<i class="fas fa-star" style="color: #ffc300"></i>'
               );
             } else {
               console.log('enterd2');
-              $('.favourite').html('<i class="far fa-star"></i>');
+              $(e.currentTarget).html('<i class="far fa-star"></i>');
             }
           },
           error: function (response) {
             console.log('error', response);
           },
         });
-      });
+    });
+      // $('.favourite').click(function (e) {
+      //   const csrftoken = getCookie('csrftoken');
+      //   console.log('csrf token', csrftoken);
+      //   e.preventDefault();
+      //   // get the nickname
+      //   let event = $(this).attr('id');
+      //   console.log('data', event);
+      //   // GET AJAX request
+      //   $.ajax({
+      //     type: 'POST',
+      //     headers: { 'X-CSRFToken': csrftoken },
+      //     url: "/mark_favourite/",
+      //     data: {
+      //       event: event,
+      //     },
+      //     success: function (response) {
+      //       if (response.status == 'favourite') {
+      //         console.log('enterd');
+      //         $('.favourite').html(
+      //           '<i class="fas fa-star" style="color: #ffc300"></i>'
+      //         );
+      //       } else {
+      //         console.log('enterd2');
+      //         $('.favourite').html('<i class="far fa-star"></i>');
+      //       }
+      //     },
+      //     error: function (response) {
+      //       console.log('error', response);
+      //     },
+      //   });
+      // });
     });

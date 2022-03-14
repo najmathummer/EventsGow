@@ -34,10 +34,13 @@ a{
 .select2-dropdown{
     z-index: 3051;
 }
+.lp-navbar{
+    background-color: transparent !important;
+}
 .lp-grid-2 {
     display: grid;
     grid-template-columns: 70% 30%;
-    padding: 2% 60px;
+    padding: 6% 60px;
 }
 .font-white{
     color: #ffffff;
@@ -51,4 +54,16 @@ a{
         rgba(87, 81, 81, 0.6)
       ),
       url('../../media/images/events.jpeg');   
+}
+@media only screen and (max-width: 768px) {
+    .lp-grid-2 {
+        display: grid;
+        grid-template-columns: 100%;
+        padding-top: 100px;
+        text-align: center;
+        padding-left: 50px;
+        padding-right: 50px;
+        /* padding-bottom: 50px; */
+      }
+
 }
