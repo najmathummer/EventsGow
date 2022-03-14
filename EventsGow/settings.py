@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'events',
 ]
 SITE_ID = 1
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Eventsgow.com"
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -105,7 +106,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'eventsgow',
-        'USER': 'yourusername',
+        'USER': 'najmathummer',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

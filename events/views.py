@@ -1,10 +1,11 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 # Create your views here.
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from events.forms import EventForm
 from django.db.models import Q
 
@@ -81,6 +82,10 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     success_url = "/"
     def form_valid(self, form):
         return super().form_valid(form)
+
+class EventDeleteView(LoginRequiredMixin, DeleteView):
+    model = Events
+    success_url = reverse_lazy('events:home')
 
 class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events

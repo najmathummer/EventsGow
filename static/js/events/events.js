@@ -24,6 +24,7 @@ $(document).ready(function() {
           }
         },
       });
+  
       $('body').on('click', '.createEvent', function(e) {
         e.preventDefault();
         // get the nickname
@@ -51,6 +52,25 @@ $(document).ready(function() {
         $.ajax({
           type: 'GET',
           url: "/update_event/"+$(this).attr('id'),
+          success: function (response) {
+            // if not valid user, alert the user
+            $('.modalBody').html(response);
+    
+            console.log('display');
+          },
+          error: function (response) {
+            console.log('error', response);
+          },
+        });
+      });
+      $('body').on('click', '.deleteEvent', function(e) {
+        e.preventDefault();
+        // get the nickname
+        var nick_name = $(this).val();
+        // GET AJAX request
+        $.ajax({
+          type: 'GET',
+          url: "/delete_event/"+$(this).attr('id'),
           success: function (response) {
             // if not valid user, alert the user
             $('.modalBody').html(response);

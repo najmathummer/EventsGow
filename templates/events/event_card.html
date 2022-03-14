@@ -1,9 +1,11 @@
 <div class="card" style="width: 18rem">
   {% if event.image %}
-  <img src="{{event.image.url}}" class="card-img-top" alt="..." />
+  <div class="card-image">
+  <img src="{{event.image.url}}" class="card-img-top" alt="image" /></div>
   {% endif %}
   <div class="card-body">
     <div class="d-flex justify-content-end">
+    {% if event.creator == user %}
       <div
         class="updateEvent"
         id="{{ event.uuid }}"
@@ -12,6 +14,16 @@
       >
         <i class="far fa-edit me-1"></i>
       </div>
+      
+      <div
+        class="deleteEvent"
+        id="{{ event.uuid }}"
+        title="Delete Event"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        <i class="fas fa-trash me-1"></i>
+      </div>
       <div class="favourite" id="{{ event.uuid }}">
         {% if user in event.favourite.all %}
         <i class="fas fa-star" style="color: #ffc300"></i>
@@ -19,6 +31,15 @@
         <i class="far fa-star"></i>
         {% endif %}
       </div>
+      {% else %}
+      <div class="favourite" id="{{ event.uuid }}">
+        {% if user in event.favourite.all %}
+        <i class="fas fa-star" style="color: #ffc300"></i>
+        {% else %}
+        <i class="far fa-star"></i>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
     <h5 class="">{{event.title}}</h5>
     <b><i class="fas fa-map-marker-alt me-1"></i> {{event.venue}}</b>

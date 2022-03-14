@@ -7,13 +7,13 @@
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">EventsGow</a>
-      <a href="{% url 'account_logout' %}">Log out</a>
+      <a href="{% url 'account_logout' %}" ><i class="fas fa-sign-out-alt text-white h5"></i></a>
     </div>
   </nav>
   <!-- End Navbar -->
   <!-- Search Bar -->
   <div class="d-flex justify-content-center px-5 my-4">
-    <div class="d-flex w-75 justify-content-center">
+    <div class="d-flex search-container justify-content-center">
       <input
         class="form-control me-2 search-input"
         type="search"
@@ -53,7 +53,7 @@
     </div>
     <!-- End Modal -->
     <!-- Tab Bar -->
-    <ul class="nav nav-tabs px-5" id="myTab" role="tablist">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button
           class="nav-link active"
@@ -130,7 +130,7 @@
                 data-bs-target="#exampleModal"
               >
                 <div
-                  class="card-body d-flex justify-content-center align-items-center"
+                  class="card-body add-card-body"
                 >
                   <i class="fas fa-plus" style="font-size: x-large"></i>
                 </div></div
