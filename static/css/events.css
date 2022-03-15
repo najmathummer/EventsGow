@@ -56,7 +56,7 @@ a{
         rgba(24, 22, 22, 0.6),
         rgba(87, 81, 81, 0.6)
       ),
-      url('../../media/images/events.jpeg');   
+      url('../images/events.jpeg');   
 }
 .nav-tabs{
     padding-right: 3rem;
