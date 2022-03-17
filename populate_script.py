@@ -1,8 +1,3 @@
-# from EventsGow.models import Category, Page
-# from django.core.files import File
-# import os
-# import glob
-
 import os
 from events.models import Tags
 
