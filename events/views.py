@@ -1,11 +1,13 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 # Create your views here.
-from django.views.generic import TemplateView
+from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from events.forms import EventForm
+from django.db.models import Q
 
 
 from events.models import Events
@@ -26,56 +28,82 @@ class Home(LoginRequiredMixin, ListView):
                     }
         return queryset
 
+class EventListView(LoginRequiredMixin, ListView):
+    model = Events
+    template_name = "events/all_event_list.html"
+    context_object_name = 'events'
+    queryset = Events.objects.all()
 
 
-class AjaxableResponseMixin:
-    """
-    Mixin to add AJAX support to a form.
-    Must be used with an object-based FormView (e.g. CreateView)
-    """
-    def form_invalid(self, form):
-        print("entered")
-        response = super().form_invalid(form)
-        if self.request.accepts('text/html'):
-            return JsonResponse(form.errors, status=400)
-        else:
-            return response
 
-    def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
-        print("entered")
-        response = super().form_valid(form)
-        if self.request.accepts('text/html'):
-            data = {
-                'pk': self.object.pk,
-                'status': 'ok'
-            }
-            return JsonResponse(data)
-        else:
-            return response
+class FavouriteEventsListView(LoginRequiredMixin, ListView):
+    model = Events
+    template_name = "events/event_list.html"
+    context_object_name = 'events'
 
-class EventCreateView(CreateView):
+    def get_queryset(self):
+        queryset = Events.objects.filter(favourite=self.request.user)
+        return queryset
+
+class CreatedEventsListView(LoginRequiredMixin, ListView):
+    model = Events
+    template_name = "events/event_list.html"
+    context_object_name = 'events'
+
+    def get_queryset(self):
+        queryset = Events.objects.filter(creator=self.request.user)
+        return queryset
+
+class GoingEventsListView(LoginRequiredMixin, ListView):
+    model = Events
+    template_name = "events/event_list.html"
+    context_object_name = 'events'
+
+    def get_queryset(self):
+        queryset = Events.objects.filter(attendees=self.request.user)
+        return queryset
+
+
+
+
+class EventCreateView(LoginRequiredMixin,CreateView):
     model = Events
     form_class = EventForm
-    # fields = ("title", "venue", "description", "date", "time", "url", "tags")
     success_url = "/"
     def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
+     
         form.instance.creator = self.request.user
-        response = super().form_valid(form)
         return super().form_valid(form)
-        # if self.request.accepts('text/html'):
-        #     data = {
-        #         'pk': self.object.pk,
-        #         'status': 'ok'
-        #     }
-        #     return JsonResponse(data)
-        # else:
-        #     return response
+
+class EventUpdateView(LoginRequiredMixin, UpdateView):
+    model = Events
+    form_class = EventForm
+    template_name_suffix = '_update_form'
+    success_url = "/"
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class EventDeleteView(LoginRequiredMixin, DeleteView):
+    model = Events
+    success_url = reverse_lazy('events:home')
+
+class EventDetailView(LoginRequiredMixin, DetailView):
+    model = Events
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     return context
+
+
+class SearchListView(LoginRequiredMixin, ListView):
+    model = Events
+    template_name = "events/all_event_list.html"
+    context_object_name = 'events'
+    def get_queryset(self):
+        
+        query = self.request.GET.get('data')
+        queryset = Events.objects.filter(Q(tags__tag_name__icontains=query) | Q(title__icontains=query)).distinct()
+        print("slef", queryset)
+        return queryset
 
 def attend_event(request):
     if request.method == 'POST':

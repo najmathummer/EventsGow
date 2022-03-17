@@ -152,4 +152,8 @@ cython_debug/
 #.idea/
 .vscode/
 media/
+
 migrations/
+.DS_Store
+db.sqlite3
+
