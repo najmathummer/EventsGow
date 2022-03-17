@@ -15,7 +15,7 @@ for i in tag_list:
 
 # tag = Tags(tag_name="outdoors")
 # tag = Tags(tag_name="indoors")
-# tag = Tags(tag_name="sports")
+# tag = Tags(tag_name="sports") 
 # tag = Tags(tag_name="trekking")
 # tag = Tags(tag_name="food")
 # tag = Tags(tag_name="music")
