@@ -1,9 +1,11 @@
 import os
-from events.models import Tags
+import django
+
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'EventsGow.settings')
-import django
 django.setup()
+
+from events.models import Tags
 
 tag_list = ["food", "outdoors", "indoors", "sports", "music", "film", "trekking", "whisky", "party"]
 
