@@ -34,3 +34,96 @@ a{
 .select2-dropdown{
     z-index: 3051;
 }
+.card-image {
+    height: 18vh;
+}
+.lp-navbar{
+    background-color: transparent !important;
+}
+.lp-grid-2 {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    padding: 6% 60px;
+}
+.font-white{
+    color: #ffffff;
+}
+.landing-page{
+    height: 100vh;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-image: linear-gradient(
+        rgba(24, 22, 22, 0.6),
+        rgba(87, 81, 81, 0.6)
+      ),
+      url('../images/events.jpeg');   
+}
+.nav-tabs{
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+
+.my-float{
+	margin-top:22px;
+}
+.add-card-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search-container{
+    width: 75%;
+}
+@media only screen and (max-width: 768px) {
+    .lp-grid-2 {
+        display: grid;
+        grid-template-columns: 100%;
+        padding-top: 100px;
+        text-align: center;
+        padding-left: 50px;
+        padding-right: 50px;
+        /* padding-bottom: 50px; */
+      }
+      .d-grid-events {
+        display: grid;
+        padding: 3rem;
+        row-gap: 2rem;
+        /* justify-content: center; */
+        grid-template-columns: 100%;
+      }
+      .nav-link{
+        padding: 0.5rem 0.5rem;
+      }
+      .nav-tabs{
+        padding-right: .5rem;
+        padding-left: .5rem;
+    }
+    .search-container{
+        width: 100%;
+    }
+    .add-card{
+        position:fixed !important;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:rgb(245, 46, 89);
+       z-index: 1;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+    }
+    .add-card-body{
+        display: flex;
+        color:#FFF !important;
+        padding: 1.2rem;
+        justify-content: initial !important;
+        align-items: center !important;
+    }
+    .createEvent{
+        background-color: transparent;
+        border: none;
+    }
+
+}

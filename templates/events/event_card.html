@@ -1,21 +1,45 @@
 <div class="card" style="width: 18rem">
-{% if event.image %}
-  <img
-    src={{event.image.url}}
-    class="card-img-top"
-    alt="..."
-  />
+  {% if event.image %}
+  <div class="card-image">
+  <img src="{{event.image.url}}" class="card-img-top" alt="image" /></div>
   {% endif %}
   <div class="card-body">
     <div class="d-flex justify-content-end">
-      <div><i class="far fa-edit me-1"></i></div>
+    {% if event.creator == user %}
+      <div
+        class="updateEvent"
+        id="{{ event.uuid }}"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        <i class="far fa-edit me-1"></i>
+      </div>
+      
+      <div
+        class="deleteEvent"
+        id="{{ event.uuid }}"
+        title="Delete Event"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        <i class="fas fa-trash me-1"></i>
+      </div>
       <div class="favourite" id="{{ event.uuid }}">
         {% if user in event.favourite.all %}
-        <i class="fas fa-star" style="color: #ffc300" ></i>
+        <i class="fas fa-star" style="color: #ffc300"></i>
         {% else %}
         <i class="far fa-star"></i>
         {% endif %}
       </div>
+      {% else %}
+      <div class="favourite" id="{{ event.uuid }}">
+        {% if user in event.favourite.all %}
+        <i class="fas fa-star" style="color: #ffc300"></i>
+        {% else %}
+        <i class="far fa-star"></i>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
     <h5 class="">{{event.title}}</h5>
     <b><i class="fas fa-map-marker-alt me-1"></i> {{event.venue}}</b>
@@ -23,16 +47,29 @@
     <div><i class="far fa-clock me-1"></i>{{event.time}}</div>
     <div><i class="fas fa-link me-1"></i>{{event.url}}</div>
     <p class="card-text mb-1">{{event.description}}</p>
-    <div class="d-flex justify-content-between align-items-end">
-      <div><a href="">You and 5 others going</a></div>
+    <div
+      class="d-flex justify-content-between align-items-end"
+    >
+      {% if user in event.attendees.all %}
+      <div id="{{ event.uuid }}"
+      class="attendees-list"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal">
+        <a href="#">You and {{event.attendees.count|add:-1}} others going</a>
+      </div>
+      {% else %}
+      <div id="{{ event.uuid }}"
+      class="attendees-list"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"><a href="#">{{event.attendees.count}} people going</a></div>
+      {% endif %}
       <div>
-      
-        <button type="button" class="btn btn-primary btn-sm attend" value="{{ event.uuid }}">
-          {% if user in event.attendees.all%}
-          Attending
-          {% else %}
-          Attend
-          {% endif %}
+        <button
+          type="button"
+          class="btn btn-primary btn-sm attend-btn"
+          value="{{ event.uuid }}"
+        >
+          {% if user in event.attendees.all%} Attending {% else %} Attend {% endif %}
         </button>
       </div>
     </div>

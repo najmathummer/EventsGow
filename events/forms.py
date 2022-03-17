@@ -33,3 +33,4 @@ class EventForm(forms.ModelForm):
               }),
 
         }
+

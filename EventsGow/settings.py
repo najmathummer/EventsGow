@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-#thjmm5q$zm&rg5-f=%$2=_^%u(b6hvqlth+w=k-*yg_$8ouj9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['eventsgow.pythonanywhere.com', 'localhost:8000']
 
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'events',
 ]
 SITE_ID = 1
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Eventsgow.com"
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -90,7 +91,11 @@ TEMPLATES = [
         },
     },
 ]
+ACCOUNT_FORMS = {'login': 'accounts.forms.MyCustomLoginForm',
+                'signup': 'accounts.forms.MyCustomSignupForm',
+                'reset_password': 'accounts.forms.MyCustomResetPasswordForm',
 
+}
 WSGI_APPLICATION = 'EventsGow.wsgi.application'
 
 
@@ -99,12 +104,8 @@ WSGI_APPLICATION = 'EventsGow.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'eventsdb',
-        'USER': 'ahmed',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'PASSWORD': '796HDSrh',
+        'ENGINE':'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 LOGIN_REDIRECT_URL = 'events:home'
