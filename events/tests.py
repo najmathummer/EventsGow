@@ -111,13 +111,6 @@ class EventsTest(TestCase):
         response = self.client.get('/attending/')
         self.assertEquals(response.status_code, 200)
 
-
-    @patch('django.contrib.auth.middleware.get_user', return_value=CustomUser.objects.first())
-    def test_home_page_status_code(self, patch):
-        response = self.client.get('')
-        self.assertEquals(response.status_code, 200)
-
-
     def test_password_reset_get(self):
         resp = self.client.get(reverse("account_reset_password"))
         self.assertTemplateUsed(resp, "account/password_reset.html")
