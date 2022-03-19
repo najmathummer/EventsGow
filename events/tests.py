@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.messages.middleware import MessageMiddleware
 from django.contrib.sessions.middleware import SessionMiddleware
 from django.test import TestCase
+
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.contrib.auth import get_user_model 
@@ -121,4 +122,4 @@ class EventsTest(TestCase):
         resp = self.client.get(reverse("account_reset_password"))
         self.assertTemplateUsed(resp, "account/password_reset.html")
 
-    
+ 
