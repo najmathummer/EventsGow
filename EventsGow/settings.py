@@ -28,10 +28,10 @@ SECRET_KEY = 'django-insecure-#thjmm5q$zm&rg5-f=%$2=_^%u(b6hvqlth+w=k-*yg_$8ouj9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['eventsgow.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-# BASE_URL = "localhost:8000/"
-BASE_URL = "https://eventsgow.pythonanywhere.com/"
+BASE_URL = "localhost:8000/"
+# BASE_URL = "https://eventsgow.pythonanywhere.com/"
 # Application definition
 
 INSTALLED_APPS = [
