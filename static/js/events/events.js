@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  const allEventsTab = new bootstrap.Tab(document.querySelector("#allevents-tab"));
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -98,27 +99,31 @@ $(document).ready(function() {
         });
       });
       
-      $('.search-input').change(function (e) {
+      $('.search-input').input(function (e) {
         e.preventDefault();
         // get the nickname
         var nick_name = $(this).val();
         console.log('data', nick_name);
         // GET AJAX request
         $.ajax({
-          type: 'GET',
-          url: "/search/",
-          data:{"data":nick_name},
-          success: function (response) {
-           
-            $('#allevents').html(response);
-           
-            console.log('display', response);
-          },
-          error: function (response) {
-            console.log('error', response);
-          },
+            type: 'GET',
+            url: "/search/",
+            data: { "data": nick_name },
+            success: function (response) {
+
+                $('#allevents').html(response);
+
+                console.log('display', response);
+            },
+            error: function (response) {
+                console.log('error', response);
+            },
+            complete: function () {
+                allEventsTab.show();
+            }
         });
-      });
+    });
+
       
       $('#allevents-tab').click(function (e) {
         e.preventDefault();
