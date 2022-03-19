@@ -3,7 +3,6 @@ from accounts.models import CustomUser
 import uuid
 
 # Event model-listView-url-listTemplate
-
 class Tags(models.Model):
     tag_name = models.CharField(max_length=20)
     def __str__(self):
@@ -23,7 +22,6 @@ class Events(models.Model):
     favourite = models.ManyToManyField(CustomUser, related_name='favourite', blank=True)
     url = models.CharField(max_length=60)
     tags = models.ManyToManyField(Tags, related_name='tags', blank=True)
-
 
     def __str__(self):
         return self.title
