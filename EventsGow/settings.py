@@ -30,7 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['eventsgow.pythonanywhere.com', 'localhost', '127.0.0.1']
 
-
+# BASE_URL = "localhost:8000/"
+BASE_URL = "https://eventsgow.pythonanywhere.com/"
 # Application definition
 
 INSTALLED_APPS = [

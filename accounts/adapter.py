@@ -15,3 +15,14 @@ class DefaultAccountAdapterCustom(DefaultAccountAdapter):
         #     raise forms.ValidationError("Your domain is bad.")
 
         return email
+
+    def send_mail(self, template_prefix, email, context):
+        if 'key' in context:
+            context['activate_url'] = settings.BASE_URL + 'accounts/confirm-email/' + context['key']
+        elif 'password_reset_url' in context:
+            
+            context['password_reset_url'] = settings.BASE_URL + 'accounts/password/reset/key/'+ context['password_reset_url'].split('/')[7] + '/'
+
+        msg = self.render_mail(template_prefix, email, context)
+        msg.send()
+
