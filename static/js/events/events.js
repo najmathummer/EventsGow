@@ -198,6 +198,7 @@ $(document).ready(function() {
             // if not valid user, alert the user
             console.log('attend_success,', response.status);
             $(e.currentTarget).html(response.status);
+            $('.attendees-list').html(response.attendees_list);
           },
           error: function (response) {
             console.log('error', response);

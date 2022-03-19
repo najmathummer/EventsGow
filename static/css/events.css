@@ -25,10 +25,12 @@ a {
     text-decoration: none;
 }
 .add-card{
-    min-height: 21.3rem;
+    /* min-height: 21.3rem; */
 }
 
-
+.card{
+    max-height: 30rem;
+}
 .d-grid-events {
     display: grid;
     padding: 3rem;
@@ -36,7 +38,10 @@ a {
     /* justify-content: center; */
     grid-template-columns: 25% 25% 25% 25%;
 }
-
+.event-url{
+    display: flex;
+    word-break: break-word;
+}
 .select2 {
     width: 100% !important;
 }
@@ -91,6 +96,10 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.card-body{
+    display: flex;
+    flex-direction: column;
 }
 
 .search-container {

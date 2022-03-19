@@ -110,9 +110,9 @@ def attend_event(request):
         event = Events.objects.get(uuid = request.POST.get('event', None) )
         if(request.user not in event.attendees.all()):
             event.attendees.add(request.user)
-            return JsonResponse({"status": "Attending"})
+            return JsonResponse({"status": "Attending", "attendees_list": "You and " +str(event.attendees.count()) + " others are going"})
         event.attendees.remove(request.user)
-        return JsonResponse({"status": "Attend"})
+        return JsonResponse({"status": "Attend", "attendees_list": str(event.attendees.count()) + " people are going"})
 
 def mark_favourite(request):
     if request.method == 'POST':

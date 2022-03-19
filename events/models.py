@@ -13,7 +13,7 @@ class Events(models.Model):
     uuid = uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True) # Primary key attribute
     title = models.CharField(max_length= 50, blank = False) # provides text label for user
     venue = models.CharField(max_length= 30)
-    description = models.CharField(max_length= 1024)
+    description = models.CharField(max_length= 100)
     image = models.ImageField(upload_to='images/')
     date = models.DateField()
     time = models.TimeField()
