@@ -157,3 +157,4 @@ migrations/
 .DS_Store
 db.sqlite3
 
+__pycache__
