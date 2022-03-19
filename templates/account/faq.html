@@ -1,41 +1,40 @@
 {% extends "account/base.html" %} {% load i18n %} {% load account %} {% block head_title %}{% trans "FAQ" %}{% endblock %} {% block content %}
 <div class="d-flex justify-content-center align-items-center mt-5 pt-5">
-    <div class="w-100 px-5">
+    <div class="w-100 paddingrightleft">
         <h1 class="text-center mb-3">{% trans "Frequently Asked Questions" %}</h1>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-        If I am not a current student of the University of Glasgow, can I register and publish an event ?
+                      What is EventsGow?
       </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>All services are solely for the University of Glasgow students.</code> class. This is the first item's accordion body.</div>
+                    <div class="accordion-body">Having trouble finding any events happening at the University? Can’t seem to keep up with all the updates from different platforms? Well, you’re in the right place. EventsGow will provide you with all the events happening at the University
+                        of Glasgow, all in one place.</div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Do I have to pay any commission for creating an event on the application?
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      Why it is unique?
       </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>If you are a student of the University of Glasgow all services are free of charge.</code> class. This is the second item's accordion body. Let's imagine
-                        this being filled with some actual content.</div>
+                    </h2>
+                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Compared to Facebook and Meetup, our website is specifically designed for the University of Glasgow students which can strengthen the internal relations and connection on campus that has been affected dramatically during the lockdown,
+                            but also ensure the identification of the initiator. Like the SRC website, which is owned by the University, the functionality will be similar but with EventsGow, students can now create their own social events, start an activity
+                            and find more students with common interests.</div>
+                    </div>
                 </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Do you provide an infrastructure for getting the ticket payments on the system?
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                      Why do you need EventsGow?
       </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>There is no payment system in the application at the moment.</code> class. This is the third item's accordion body. Nothing more exciting happening
-                        here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    </h2>
+                    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">No need to join various social media groups to stay up to date with exciting events happening near you. Just access the EventsGow website, search up your favourite events and catchup with all the details you need.</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+        {% endblock %}
