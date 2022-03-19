@@ -99,7 +99,7 @@ $(document).ready(function() {
         });
       });
       
-      $('.search-input').input(function (e) {
+      $('.search-input').change(function (e) {
         e.preventDefault();
         // get the nickname
         var nick_name = $(this).val();
