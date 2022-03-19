@@ -10,10 +10,10 @@ from events.models import Tags
 
 tag_list = [
 # type    
-"food", "outdoors", "indoors", "sports", "music", "film", "trekking", "whisky", "party",
+"food", "sports", "music", "film", "trekking", "whisky", "party",
 # type
 "entertainment", "academic", "sport", "art", "society", 
-"private", "public", "ticket", "free", 
+"private", "public", "ticket", "free", "outdoors", "indoors",
 # scale
 "<10 people", "10-50 people", "50-100 people", ">100 people",
 # entertainment
@@ -55,9 +55,12 @@ tag_list = [
 'polo', 'pool', 'puck', 'quarter', 'quiver', 'race', 'racer', 'referee', 'relay', 'ride', 'rink', 'row', 'rower', 
 'sail', 'score', 'scuba', 'skate', 'ski', 'skier', 'slalom', 'sled', 'sledder', 'snowboard', 'soccer', 'sport', 
 'squash', 'stadium', 'stick', 'surfer', 'swim', 'swimmer', 'tag', 'target', 'team', 'tee', 'tennis', 'throw', 
-'tie', 'triathlon', 'umpire', 'vault', 'volley', 'walk', 'weight', 'win', 'winner', 'winning', 'wrestler'
+'tie', 'triathlon', 'umpire', 'vault', 'volley', 'walk', 'weight', 'win', 'winner', 'winning', 'wrestler',
 # academic
-
+'Life Science','Business','Chemistry','Computing Science','Critical Studies','Culture & Creative Arts','Education',
+'Engineering','Geographical & Earth Sciences', 'Interdisciplinary Studies','Law','Mathematics & Statistics',' Medicine',
+'Dentistry','Nursing','Modern Languages','Physics & Astronomy','Psychology & Neuroscience','Social & Political Sciences',
+'Veterinary Medicine',
 ]
 
 
