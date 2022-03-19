@@ -40,6 +40,7 @@ from allauth.account.utils import (
 )
 from allauth.account.auth_backends import AuthenticationBackend
 
+
 def _create_user(self, username="test123", password="qwer123456"):
     user = get_user_model().objects.create(username=username, is_active=True)
     if password:
@@ -116,3 +117,4 @@ class AccountsTests(TestCase):
             None,
         )
         
+
