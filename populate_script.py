@@ -78,7 +78,7 @@ for i in tag_list:
         tag.save()
 
 # Creating an event list to populate some events when the application is run
-user, created = CustomUser.objects.get_or_create(id=3)
+user, created = CustomUser.objects.get_or_create(username="test", email="test@student.gla.ac.uk")
 events_list = [{'title': "Riverside Festival", 'venue': "Riverside Museum", 'description': "Riverside Festival is the music event in Glasgow you don't want to miss out on. Taking place at its usual beaut location, the Riverside Museum, this goings-on is set to be a heaving paradise for lovers of house, techno and the like.",
                 'image': '/images/riverside.jpg', 'date': date.today(), 'time': datetime.now().strftime("%H:%M"),
                 'url': "https://www.designmynight.com/glasgow/clubs/west-end/riverside-museum/riverside-festival-1", 'tags': [Tags.objects.filter(tag_name="concert")[0], Tags.objects.filter(tag_name="outdoors")[0], Tags.objects.filter(tag_name="music")[0]

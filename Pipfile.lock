@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7056623d451d2e15a09cd0c7b3e9693e93a3d964a6371ec8eb8a426c5d326024"
+            "sha256": "1a8baff24cefc0e2e9db638b32535b17a0ee95a63386e04ad3421930bffe82c2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -163,6 +163,17 @@
             ],
             "index": "pypi",
             "version": "==0.49.0"
+        },
+        "django-anymail": {
+            "extras": [
+                "sendinblue"
+            ],
+            "hashes": [
+                "sha256:2325932f56f914d96e0a54db850f2b246ed2277b753f75319620d051a51551e2",
+                "sha256:677e937dc9e2671ca7631abb1d94ddc6b840beb3d53c0fbf699e866a6a9ba92f"
+            ],
+            "index": "pypi",
+            "version": "==8.5"
         },
         "idna": {
             "hashes": [
@@ -339,6 +350,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.2"
+        },
+        "tzdata": {
+            "hashes": [
+                "sha256:238e70234214138ed7b4e8a0fab0e5e13872edab3be586ab8198c407620e2ab9",
+                "sha256:8b536a8ec63dc0751342b3984193a3118f8fca2afe25752bb9b7fffd398552d3"
+            ],
+            "markers": "sys_platform == 'win32'",
+            "version": "==2022.1"
         },
         "urllib3": {
             "hashes": [

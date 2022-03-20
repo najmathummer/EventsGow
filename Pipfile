@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 django-allauth = "*"
 pillow = "*"
 python-dotenv = "*"
+django-anymail = {extras = ["sendinblue"], version = "*"}
 
 [requires]
 python_version = "3.8"
