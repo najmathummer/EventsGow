@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from events.forms import EventForm
 from django.db.models import Q
 from events.models import Events
+from django.contrib.auth.decorators import login_required
 
 
 # Home view which render after login
@@ -108,20 +109,21 @@ class SearchListView(LoginRequiredMixin, ListView):
         
         query = self.request.GET.get('data')
         queryset = Events.objects.filter(Q(tags__tag_name__icontains=query) | Q(title__icontains=query)).distinct()
-        print("slef", queryset)
         return queryset
 
 # Attend event ajax call
+@login_required
 def attend_event(request):
     if request.method == 'POST':
         event = Events.objects.get(uuid = request.POST.get('event', None) )
         if(request.user not in event.attendees.all()):
             event.attendees.add(request.user)
-            return JsonResponse({"status": "Attending", "attendees_list": "You and " +str(event.attendees.count()) + " others are going"})
+            return JsonResponse({"status": "Attending", "attendees_list": "You and " +str(event.attendees.count()-1) + " others are going"})
         event.attendees.remove(request.user)
         return JsonResponse({"status": "Attend", "attendees_list": str(event.attendees.count()) + " people are going"})
 
 # Mark Favorite event ajax call
+@login_required
 def mark_favourite(request):
     if request.method == 'POST':
         event = Events.objects.get(uuid = request.POST.get('event', None) )

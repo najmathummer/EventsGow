@@ -1,5 +1,4 @@
 {% load static %} 
-{% comment %} {% block head_block %} <script src="{% static "js/events/events.js" %}"></script>{% endblock %} {% endcomment %}
 <div class="d-grid-events">
   <div class="card-container add-card">
     <a href="#">
@@ -19,70 +18,7 @@
     {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
     <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
     {% endfor %}
-    {% comment %} <span class="badge rounded-pill bg-secondary">Secondary</span>
-    <span class="badge rounded-pill bg-secondary"> + 5 more</span> {% endcomment %}
   </div>
 
   {% endfor %} {% endif %}
 </div>
-{% comment %} {% block javascript %}
-<script>
-  $(".attend").click(function (e) {
-    const csrftoken = getCookie('csrftoken');
-    console.log("csrf token",csrftoken)
-      e.preventDefault();
-      // get the nickname
-      let event = $(this).val();
-      console.log("data", event)
-      // GET AJAX request
-      $.ajax({
-          type: 'POST',
-          headers: {'X-CSRFToken': csrftoken},
-          url: "{% url 'events:attend_event' %}",
-          data: {
-            "event": event},
-          success: function (response) {
-              // if not valid user, alert the user
-              console.log("attend_success,",response.status)
-              $(".attend").html(response.status);
-
-             
-          },
-          error: function (response) {
-              console.log("error",response)
-          }
-      })
-
-  });
-  $(".favourite").click(function (e) {
-    const csrftoken = getCookie('csrftoken');
-    console.log("csrf token",csrftoken)
-      e.preventDefault();
-      // get the nickname
-      let event = $(this).attr('id');
-      console.log("data", event)
-      // GET AJAX request
-      $.ajax({
-          type: 'POST',
-          headers: {'X-CSRFToken': csrftoken},
-          url: "{% url 'events:mark_favourite' %}",
-          data: {
-            "event": event},
-          success: function (response) {
-              console.log("mark_favourite,",response.status=="favourite")
-              if(response.status=="favourite"){
-                console.log("enterd")
-                $(".favourite").html( '<i class="fas fa-star" style="color: #ffc300"></i>');
-              }
-              else{
-                console.log("enterd2")
-                $(".favourite").html( '<i class="far fa-star"></i>');
-              } 
-          },
-          error: function (response) {
-              console.log("error",response)
-          }
-      })
-
-  })</script>
-{% endblock javascript %} {% endcomment %}

@@ -135,6 +135,12 @@ $(document).ready(function() {
             success: function (response) {
 
                 $('#allevents').html(response);
+                $( ".card-text" ).each(function() {
+                  if($( this ).text().length>30){
+                    $( this ).text()
+                    $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+                  }
+                })
             },
             error: function (response) {
                 console.log('error', response);
