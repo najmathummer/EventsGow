@@ -8,7 +8,7 @@ from datetime import date, datetime
 from accounts.models import CustomUser
 from events.models import Tags, Events
 
-
+# Creating a list of tags to populate them in our events form
 tag_list = [
 # type    
 "food", "sports", "music", "film", "trekking", "whisky", "party",
@@ -66,9 +66,7 @@ tag_list = [
 
 
 
-# Creating a list of tags to populate them in our events form
-tag_list = ["food", "outdoors", "indoors", "sports", "music", "film",
-            "trekking", "whisky", "party", "adventure", "concert", "festival"]
+
 
 # Saving the tag list
 for i in tag_list:
