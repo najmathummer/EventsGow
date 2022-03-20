@@ -11,6 +11,7 @@ django = "*"
 psycopg2-binary = "*"
 django-allauth = "*"
 pillow = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.8"

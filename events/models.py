@@ -2,7 +2,6 @@ from django.db import models
 from accounts.models import CustomUser
 import uuid
 
-# Event model-listView-url-listTemplate
 class Tags(models.Model):
     tag_name = models.CharField(max_length=20)
     def __str__(self):
@@ -10,8 +9,8 @@ class Tags(models.Model):
     
 
 class Events(models.Model):
-    uuid = uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True) # Primary key attribute
-    title = models.CharField(max_length= 50, blank = False) # provides text label for user
+    uuid = uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True) 
+    title = models.CharField(max_length= 50, blank = False)
     venue = models.CharField(max_length= 30)
     description = models.CharField(max_length= 100)
     image = models.ImageField(upload_to='images/')

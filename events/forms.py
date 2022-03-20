@@ -8,8 +8,6 @@ from events.models import Events
 class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        # self.fields['tags'].widget.attrs.update({'class': 'form-control'})
     
     class Meta:
         model = Events
@@ -24,9 +22,6 @@ class EventForm(forms.ModelForm):
              'value': date.today,
                'type': 'date'
               }),
-            # 'tags': forms.SelectMultiple( attrs={'class': 'form-control', 
-        
-            #   }),
             'time': forms.TimeInput(attrs={'class': 'form-control', 
                 'value': datetime.now().strftime("%H:%M"),
                'type': 'time'

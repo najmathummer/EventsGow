@@ -1,5 +1,4 @@
 {% load static %} 
-{% comment %} {% block head_block %} <script src="{% static "js/events/events.js" %}"></script>{% endblock %} {% endcomment %}
 <div class="d-grid-events">
   {% if events %} {% for event in events %}
 
@@ -7,9 +6,6 @@
     {% include 'events/event_card.html' %} {% for tag in event.tags.all %}
     <span class="badge rounded-pill bg-secondary">{{tag.tag_name}}</span>
     {% endfor %}
-    {% comment %} {% if event.tags.count > 2 %}
-    <span class="badge rounded-pill bg-secondary"> {{ event.tags.count|add:-2|slugify|add:"More"}}</span>
-    {% endif %} {% endcomment %}
   </div>
   {% endfor %} {% endif %}
 </div>

@@ -1,20 +1,9 @@
-
-   
- 
-
-
-      <form method="post" id='form' action="{% url 'events:add_event'  %}" enctype="multipart/form-data">
-      {% csrf_token %}
-       {{ form.as_p }}
-       <input type="submit" value="Save" class="btn btn-primary ">
-        </form>
-        {% block javascript %}
-        <script>
-     $(document).ready(function() {
-$('#id_tags').select2({
-     maximumSelectionLength: 3}
-);
-});
-    </script>
-    {% endblock javascript %}
-     
+<form
+  method="post"
+  id="form"
+  action="{% url 'events:add_event'  %}"
+  enctype="multipart/form-data"
+>
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" value="Save" class="btn btn-primary" />
+</form>

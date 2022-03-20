@@ -1,7 +1,7 @@
 
 from django.views.generic.base import TemplateView
 
-# Create your views here.
+# FAQ Template view
 class FAQView(TemplateView):
     
     template_name = "account/faq.html"

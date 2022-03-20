@@ -1,18 +1,15 @@
 from django.http import JsonResponse
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-# Create your views here.
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from events.forms import EventForm
 from django.db.models import Q
-
-
 from events.models import Events
 
 
+# Home view which render after login
 class Home(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/home.html"
@@ -28,6 +25,7 @@ class Home(LoginRequiredMixin, ListView):
                     }
         return queryset
 
+# All Event list view
 class EventListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/all_event_list.html"
@@ -35,7 +33,7 @@ class EventListView(LoginRequiredMixin, ListView):
     queryset = Events.objects.all()
 
 
-
+# Favourite Event list view
 class FavouriteEventsListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/event_list.html"
@@ -45,6 +43,7 @@ class FavouriteEventsListView(LoginRequiredMixin, ListView):
         queryset = Events.objects.filter(favourite=self.request.user)
         return queryset
 
+# Created Event list view
 class CreatedEventsListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/event_list.html"
@@ -54,6 +53,7 @@ class CreatedEventsListView(LoginRequiredMixin, ListView):
         queryset = Events.objects.filter(creator=self.request.user)
         return queryset
 
+# Going Event list view
 class GoingEventsListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/event_list.html"
@@ -65,7 +65,7 @@ class GoingEventsListView(LoginRequiredMixin, ListView):
 
 
 
-
+# Event create view
 class EventCreateView(LoginRequiredMixin,CreateView):
     model = Events
     form_class = EventForm
@@ -75,6 +75,7 @@ class EventCreateView(LoginRequiredMixin,CreateView):
         form.instance.creator = self.request.user
         return super().form_valid(form)
 
+# Event update view
 class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Events
     form_class = EventForm
@@ -83,17 +84,17 @@ class EventUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+# Event delete view
 class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Events
     success_url = reverse_lazy('events:home')
 
+# Event detail view
 class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     return context
 
 
+# Event search view
 class SearchListView(LoginRequiredMixin, ListView):
     model = Events
     template_name = "events/all_event_list.html"
@@ -105,6 +106,7 @@ class SearchListView(LoginRequiredMixin, ListView):
         print("slef", queryset)
         return queryset
 
+# Attend event ajax call
 def attend_event(request):
     if request.method == 'POST':
         event = Events.objects.get(uuid = request.POST.get('event', None) )
@@ -114,6 +116,7 @@ def attend_event(request):
         event.attendees.remove(request.user)
         return JsonResponse({"status": "Attend", "attendees_list": str(event.attendees.count()) + " people are going"})
 
+# Mark Favorite event ajax call
 def mark_favourite(request):
     if request.method == 'POST':
         event = Events.objects.get(uuid = request.POST.get('event', None) )
