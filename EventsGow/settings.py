@@ -26,7 +26,7 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-#thjmm5q$zm&rg5-f=%$2=_^%u(b6hvqlth+w=k-*yg_$8ouj9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['eventsgow.pythonanywhere.com', 'localhost', '127.0.0.1']
 
@@ -56,15 +56,22 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-EMAIL_BACKEND = 'anymail.backends.sendinblue.EmailBackend'
-ANYMAIL = {
-    'SENDINBLUE_API_KEY': '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',
-    'SENDINBLUE_API_URL': 'https://api.sendinblue.com/v3/'
-}
+# EMAIL_BACKEND = 'anymail.backends.sendinblue.EmailBackend'
+# ANYMAIL = {
+#     'SENDINBLUE_API_KEY': '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',
+#     'SENDINBLUE_API_URL': 'https://api.sendinblue.com/v3/'
+# }
 
 
-DEFAULT_FROM_EMAIL = 'EventsGOW <no-reply@eventsgow.com>'
+# DEFAULT_FROM_EMAIL = 'EventsGOW <no-reply@eventsgow.com>'
+# EMAIL_USE_TLS = True
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "noreply.eventsgow@gmail.com"
+EMAIL_HOST_PASSWORD = 'Hellothere123!'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 
 ACCOUNT_ADAPTER = 'accounts.adapter.DefaultAccountAdapterCustom'
 AUTHENTICATION_BACKENDS = [
