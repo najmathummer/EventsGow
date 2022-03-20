@@ -12,7 +12,7 @@ class Events(models.Model):
     uuid = uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True) 
     title = models.CharField(max_length= 50, blank = False)
     venue = models.CharField(max_length= 30)
-    description = models.CharField(max_length= 100)
+    description = models.CharField(max_length= 350)
     image = models.ImageField(upload_to='images/')
     date = models.DateField()
     time = models.TimeField()

@@ -165,8 +165,8 @@ a {
         justify-content: initial !important;
         align-items: center !important;
     }
-    .createEvent {
-        background-color: transparent;
+    .createEvent, .createEvent:hover {
+        background-color: transparent !important;
         border: none;
         width: 3.5rem;
     

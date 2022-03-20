@@ -2,6 +2,16 @@ $(document).ready(function() {
   const allEventsTab = new bootstrap.Tab(document.querySelector("#allevents-tab"));
 
 
+// show see mor if text length is more than one line
+  $( ".card-text" ).each(function(event) {
+    if($( this ).text().length>30){
+      $( this ).text()
+      $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+    }
+  });
+
+  
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -26,6 +36,24 @@ $(document).ready(function() {
           }
         },
       });
+
+      // Ajax call handling delete event
+      $('body').on('click', '.card-text', function(e) {
+        e.preventDefault();
+        $.ajax({
+          type: 'GET',
+          url: "/event/"+$(this).attr('id'),
+          success: function (response) {
+            
+            $('.modalBody').html(response);
+            $('.modal-title').html("Event Details");
+    
+          },
+          error: function (response) {
+            console.log('error', response);
+          },
+        });
+      });
   // Ajax call handling create event
       $('body').on('click', '.createEvent', function(e) {
         e.preventDefault();
@@ -33,11 +61,11 @@ $(document).ready(function() {
           type: 'GET',
           url: "/create/",
           success: function (response) {
-            // $('.modalBody').html(response);
-            // $('.modal-title').html("Create Event");
-            // $('#id_tags').select2({
-            //   maximumSelectionLength: 3,
-            // });
+            $('.modalBody').html(response);
+            $('.modal-title').html("Create Event");
+            $('#id_tags').select2({
+              maximumSelectionLength: 3,
+            });
     
           },
           error: function (response) {
@@ -85,7 +113,7 @@ $(document).ready(function() {
         e.preventDefault();
         $.ajax({
           type: 'GET',
-          url: "/event/"+ $(this).attr('id'),
+          url: "/attendees/"+ $(this).attr('id'),
           success: function (response) {
             $('.modalBody').html(response);
             $('.modal-title').html("Attendees List");
@@ -125,6 +153,12 @@ $(document).ready(function() {
           url: "/all_events/",
           success: function (response) {
             $('#allevents').html(response);
+            $( ".card-text" ).each(function() {
+              if($( this ).text().length>30){
+                $( this ).text()
+                $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+              }
+            })
           },
           error: function (response) {
             console.log('error', response);
@@ -140,6 +174,12 @@ $(document).ready(function() {
           url: "/created/",
           success: function (response) {
             $('#myevents').html(response);
+            $( ".card-text" ).each(function() {
+              if($( this ).text().length>30){
+                $( this ).text()
+                $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+              }
+            })
           },
           error: function (response) {
             console.log('error', response);
@@ -155,6 +195,12 @@ $(document).ready(function() {
           url: "/favourite/",
           success: function (response) {
             $('#fav').html(response);
+            $( ".card-text" ).each(function() {
+              if($( this ).text().length>30){
+                $( this ).text()
+                $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+              }
+            })
           },
           error: function (response) {
             console.log('error', response);
@@ -170,6 +216,12 @@ $(document).ready(function() {
           url: "/attending/",
           success: function (response) {
             $('#attending').html(response);
+            $( ".card-text" ).each(function() {
+              if($( this ).text().length>30){
+                $( this ).text()
+                $( this ).html(   $( this ).text().substring(0,28) + " " +  "<a href='#'  data-bs-toggle='modal' class='description' data-bs-target='#exampleModal'> see more </a>" )
+              }
+            })
           },
           error: function (response) {
             console.log('error', response);

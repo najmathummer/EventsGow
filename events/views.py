@@ -89,9 +89,14 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
     model = Events
     success_url = reverse_lazy('events:home')
 
-# Event detail view
+# Event attendees view
+class EventAttendeesDetailView(LoginRequiredMixin, DetailView):
+    model = Events
+
 class EventDetailView(LoginRequiredMixin, DetailView):
     model = Events
+
+    template_name = 'events/event_detail.html'
 
 
 # Event search view
