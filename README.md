@@ -26,3 +26,5 @@ for testing purposes clean_email in DefaultAccountAdapterCustom of accounts app 
 BASE_URL = "https://eventsgow.pythonanywhere.com/"
 Debug = False
 
+It is advisable to use Google chrome for good experience.
+
